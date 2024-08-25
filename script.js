@@ -2,6 +2,7 @@ let humanScore = 0;
 let computerScore = 0;
 const resultsDiv = document.getElementById('results');
 const scoreDiv = document.getElementById('score');
+const tryAgainBtn = document.getElementById('tryAgain');
 
 // Function to get computer choice
 function getComputerChoice() {
@@ -27,20 +28,30 @@ function playRound(humanChoice, computerChoice) {
     
 function updateScore(){
     scoreDiv.textContent = `Human score: ${humanScore}, Computer score: ${humanScore}`;
-    if (humanScore === 5){
-        resultsDiv.textContent = 'You win the game'
-        disableButtons();
+    if (humanScore === 5 || computerScore === 5) {
+        endGame();
+    }
+}
+
+function endGame() {
+    if (humanScore === 5) {
+        resultsDiv.textContent = 'You win the game!';
         animateWin();
-    } else if (computerScore === 5){
-        resultsDiv.textContent = 'Computer wins the game'
-        disableButtons();
+    } else {
+        resultsDiv.textContent = 'Computer wins the game!';
         animateLoss();
     }
+    disableButtons();
+    tryAgainBtn.style.display = 'inline-block';
 }
 
 
 function disableButtons(){
-    document.querySelectorAll('button').forEach(btn => btn.disabled = true);
+    document.querySelectorAll('.buttons button').forEach(btn => btn.disabled = true);
+}
+
+function enableButtons(){
+    document.querySelectorAll('.buttons button').forEach(btn => btn.disabled = false);
 }
 
 function handleClick(e){
@@ -66,6 +77,17 @@ function animateLoss(){
     document.body.style.animation = 'lossPulse 1s ease-in-out';
 }
 
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+    resultsDiv.textContent = '';
+    updateScore();
+    enableButtons();
+    tryAgainBtn.style.display = 'none';
+    document.body.style.animation = 'none';
+}
+
 document.querySelectorAll('button').forEach(btn => btn.addEventListener('click', handleClick));
+tryAgainBtn.addEventListener('click', resetGame);
 
 updateScore();
