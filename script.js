@@ -5,7 +5,7 @@ const scoreDiv = document.getElementById('score');
 
 // Function to get computer choice
 function getComputerChoice() {
-    const choices = ['rock', 'paper', scissors];
+    const choices = ['rock', 'paper', 'scissors'];
     return choices[Math.floor(Math.random() * 3)];
 }
 
@@ -22,7 +22,7 @@ function playRound(humanChoice, computerChoice) {
         return `You Win! ${humanChoice} beats ${computerChoice}`;
     }
     computerScore++;
-    return `You lose! ${computerChoice} betas ${humanChoice}`
+    return `You lose! ${computerChoice} beats ${humanChoice}`
 }
     
 function updateScore(){
