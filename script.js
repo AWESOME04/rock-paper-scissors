@@ -30,17 +30,17 @@ function updateScore(){
     if (humanScore === 5){
         resultsDiv.textContent = 'You win the game'
         disableButtons();
+        animateWin();
     } else if (computerScore === 5){
         resultsDiv.textContent = 'Computer wins the game'
         disableButtons();
+        animateLoss();
     }
 }
 
 
 function disableButtons(){
-    document.getElementById('rock').disabled = true;
-    document.getElementById('paper').disabled = true;
-    document.getElementById('scissors').disabled = true;
+    document.querySelectorAll('button').forEach(btn => btn.disabled = true);
 }
 
 function handleClick(e){
@@ -49,10 +49,23 @@ function handleClick(e){
     const result = playRound(humanChoice, computerChoice);
     resultsDiv.textContent = result;
     updateScore();
+    animateResult(result);
 }
 
-document.getElementById('rock').addEventListener('click', handleClick);
-document.getElementById('paper').addEventListener('click', handleClick);
-document.getElementById('scissors').addEventListener('click', handleClick);
+function animateResult(){
+    resultsDiv.style.animation = 'none';
+    resultsDiv.offsetHeight; // Trigger reflow
+    resultsDiv.style.animation = 'popIn 0.3s ease-out';
+}
+
+function animateWin(){
+    document.body.style.animation = 'winPulse 1s ease-in-out';
+}
+
+function animateLoss(){
+    document.body.style.animation = 'lossPulse 1s ease-in-out';
+}
+
+document.querySelectorAll('button').forEach(btn => btn.addEventListener('click', handleClick));
 
 updateScore();

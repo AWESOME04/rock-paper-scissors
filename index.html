@@ -5,18 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>Rock Paper Scissors</h1>
-        <div class="buttons">
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button>
+    </header>
+
+    <main class="container">
+        <div class="game-area">
+            <div class="buttons">
+                <button id="rock">Rock</button>
+                <button id="paper">Paper</button>
+                <button id="scissors">Scissors</button>
+            </div>
+            <div id="results" class="results"></div>
+            <div id="score" class="score"></div>
         </div>
-        <div id="results"></div>
-        <div id="score"></div>
-    </div>
+    </main>
+
+    <footer>
+        <p>Created by Evans Acheampong | <a href="https://github.com/AWESOME04/rock-paper-scissors" target="_blank">View on Github</a></p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
